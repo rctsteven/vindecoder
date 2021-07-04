@@ -1,0 +1,44 @@
+<div class='center-container'>
+  <h1>Vin Decoder</h1>
+
+  <input id="vin"
+         type="text"
+         [formControl]="vinControl"
+         class="form-control vin-input"
+         placeholder="17 character vin"
+         required
+         minlength="17"
+         maxLength="17"/>
+  
+  <div class="form-error" *ngIf="vinControl.invalid && (vinControl.dirty || vinControl.touched)">
+    <div *ngIf="vinControl.errors?.required">
+      Vin is required.
+    </div>
+
+    <div *ngIf="vinControl.errors?.minlength">
+      Vin must be 17 characters (current length: {{ vinControl.value?.length }})
+    </div>
+  </div>
+
+  <button (click)="vinSubmitClicked()" 
+          class="btn btn-primary submit-button"
+          [disabled]="submitDisabled">
+    Submit
+  </button>
+
+  <table *ngIf="currentVinInfo$ | async as vinInfo"
+         class="vin-info-table">
+    <tr *ngIf="vinInfo.hasError">
+      <td class="error">Vin Issue!</td>
+      <td class="error">
+        {{ vinInfo.errorMessage }}
+      </td>
+    </tr>
+    <tr *ngFor="let prop of vinInfo | keyvalue">
+      <ng-container *ngIf="prop.value && !['errorMessage', 'hasError'].includes(prop.key)">
+        <td>{{ prop.key | titlecase }}</td>
+        <td>{{ prop.value }}</td>
+      </ng-container>
+    </tr>
+  </table>
+</div>

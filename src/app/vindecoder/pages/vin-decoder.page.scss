@@ -1,0 +1,33 @@
+.center-container {
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  text-align: center;
+}
+
+.vin-input {
+  margin-top: 2vh;
+}
+
+.form-error {
+  color: red;
+}
+
+.submit-button {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.vin-info-table {
+  margin: auto;
+}
+
+td {
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.error {
+  border: 2px solid red;
+  color: red;
+}
